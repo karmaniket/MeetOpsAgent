@@ -8,8 +8,8 @@ from fastapi import FastAPI, Request
 from pydantic import BaseModel
 from meetops.agents.pipeline import process_meeting
 
-# API_URL = "https://your-fastapi-service.onrender.com/process_meeting"
-API_URL = "http://127.0.0.1:8000/process_meeting"
+API_URL = "https://meetopsagent.onrender.com/process_meeting"
+# API_URL = "http://127.0.0.1:8000/process_meeting"
 
 app = FastAPI()
 
