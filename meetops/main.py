@@ -1,4 +1,4 @@
-from fastapi import FastAPI, UploadFile, File
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
 import sys
@@ -25,17 +25,10 @@ app.add_middleware(
 def health_check():
     return {"status": "ok"}
 
-@app.post("/process_meeting")
-async def process_meeting_endpoint(file: UploadFile = File(...)):
-    content_bytes = await file.read()
-    text = content_bytes.decode("utf-8", errors="ignore")
-    result = process_meeting(text)
-    return result
-
 class MeetingRequest(BaseModel):
     raw_text: str
 
-@app.post("/process_meeting_json")
-async def process_meeting_json(request: MeetingRequest):
+@app.post("/process_meeting")
+async def process_meeting_endpoint(request: MeetingRequest):
     result = process_meeting(request.raw_text)
     return result
