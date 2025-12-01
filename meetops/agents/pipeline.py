@@ -68,6 +68,7 @@ def action_agent(cleaned_text: str) -> str:
     system_prompt = (
         "You are an action extraction agent. "
         "Your job is to read a cleaned meeting transcript and extract ALL action items. "
+        f"Use the system date ({system_date}) as reference for the entire due dates. "
         "Each action item must include: task, owner (if known), due_date (if known), priority (HIGH/MEDIUM/LOW). "
         "If owner or due_date is not clear, set them to null. "
         "For each line, if a task is mentioned, use the speaker as the owner unless the task is clearly assigned to someone else. "
