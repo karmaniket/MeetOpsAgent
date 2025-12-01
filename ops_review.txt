@@ -1,0 +1,8 @@
+[00:00] Karan: We missed two SLAs last week—ticket #247 and #249. Root cause?
+[00:03] Devika: The monitoring alert didn’t fire. I’ll fix the threshold misconfiguration today.
+[00:06] Aakash: We also need to update the incident playbook with the new escalation contacts.
+[00:10] Karan: Please do that by Friday noon.
+[00:13] Devika: Will do. Also, can we automate the daily uptime report generation?
+[00:16] Aakash: I can script that in Python. I’ll send a draft version by Monday.
+[00:20] Karan: Great. Schedule a dry run next Wednesday.
+[00:23] Devika: Done.

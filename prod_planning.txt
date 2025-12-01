@@ -1,0 +1,7 @@
+[00:00] Lisa: We need to lock down the Q2 roadmap. 
+[00:02] Tom: The mobile app redesign must go live by May 15th. 
+[00:05] Rohan: I’ll take ownership of the new onboarding flow prototype. ETA: May 10th.
+[00:09] Mia: I’ll coordinate with UX to test it with 5 users before the 15th.
+[00:13] Lisa: Let’s also plan for a soft beta with our internal users first.
+[00:16] Tom: I’ll draft the beta invite email and share it for review next Tuesday.
+[00:19] Lisa: Perfect. I’ll prepare a stakeholder update deck by next Thursday.
