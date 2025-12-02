@@ -47,3 +47,7 @@ if uploaded_file is not None:
             st.json(data.get("execution_results", {}))
 
             st.success(f"Stored meeting_id: {data.get('meeting_id')}")
+
+            if "error" in data and data["error"]:
+                st.error(data["error"])
+                st.stop()
