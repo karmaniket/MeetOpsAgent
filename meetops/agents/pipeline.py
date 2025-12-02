@@ -155,6 +155,13 @@ def process_meeting(raw_text: str) -> Dict[str, Any]:
     try:
         context = get_project_context(db)
         cleaned = ingestion_agent(raw_text, context)
+        if cleaned.startswith("FAILED"):
+            return {
+            "error": cleaned,
+            "cleaned_transcript": "",
+            "actions_json": "[]",
+            "execution_results": {}
+            }
         actions_json = action_agent(cleaned)
         execution_results = execution_agent(actions_json)
 
