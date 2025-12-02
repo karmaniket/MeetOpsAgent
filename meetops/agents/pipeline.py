@@ -27,7 +27,7 @@ def ask_llm(system_prompt: str, user_prompt: str) -> str:
         return response.text
     except Exception as e:
         log_event("GeminiError", prompt, str(e))
-        return f"Error from Gemini API: {e}"
+        return None
 
 def get_project_context(db) -> str:
     recent_meetings: List[Meeting] = (
@@ -100,10 +100,6 @@ def action_agent(cleaned_text: str) -> str:
     return actions_json
 
 def task_assignment_agent(actions: list, use_discord: bool = False) -> list:
-    """
-    Assigns tasks and sends notifications to Discord only.
-    Returns a list of send results.
-    """
     results = []
     for action in actions:
         task = action.get("task", "Untitled task")
@@ -148,14 +144,10 @@ def execution_agent(actions_json: str) -> Any:
     return {"calendar_results": results, "send_results": send_results, "metrics": metrics}
 
 def process_meeting(raw_text: str) -> Dict[str, Any]:
-    """
-    Orchestrates the whole multi-agent pipeline:
-    1. Fetches context/memory from DB
-    2. IngestionAgent cleans transcript
-    3. ActionAgent extracts JSON actions
-    4. ExecutionAgent calls tools
-    5. Stores results in DB
-    """
+    if len(raw_text) > 15000:
+        return {
+        "error": "Transcript too large. Please upload a smaller file (max ~15k characters)."
+        }
     db = SessionLocal()
 
     try:
