@@ -98,6 +98,14 @@ def action_agent(cleaned_text: str) -> str:
     )
 
     actions_json = ask_llm(system_prompt, user_prompt)
+    if actions_json is None:
+        return "[]"
+    if not actions_json.strip():
+        return "[]"
+    try:
+        json.loads(actions_json)
+    except:
+        actions_json = "[]"
     log_event("ActionAgent", cleaned_text, actions_json)
     return actions_json
 
