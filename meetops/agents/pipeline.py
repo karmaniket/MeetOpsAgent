@@ -59,6 +59,8 @@ def ingestion_agent(raw_text: str, context: str) -> str:
         f"--- RAW TRANSCRIPT ---\n{raw_text}"
     )
     cleaned = ask_llm(system_prompt, user_prompt)
+    if cleaned is None:
+        return "FAILED: LLM could not process this transcript. Possibly too large or invalid."
     log_event("IngestionAgent", raw_text, cleaned)
     return cleaned
 
