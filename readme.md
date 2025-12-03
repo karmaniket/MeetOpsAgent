@@ -2,6 +2,12 @@
 
 MeetOps Agent is an AI-powered automation platform for streamlining meeting operations, feedback management, production planning, and team communications. It leverages advanced AI/ML models to extract actionable insights from operational data and integrates with Discord and calendar systems for workflow automation.
 
+## *Live On Render [link](https://meetopsapp.onrender.com)*
+
+## *Click below for full tutorial*
+
+[![Demo](https://img.youtube.com/vi/K6lmfH7ocXQ/maxresdefault.jpg)](https://youtu.be/K6lmfH7ocXQ)
+
 ## Table of Contents
 - [Overview](#overview)
 - [Features](#features)
