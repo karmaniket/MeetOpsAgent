@@ -1,7 +1,7 @@
 import os
 import datetime
 
-LOG_DIR = "logs"
+LOG_DIR = "meetops/logs"
 os.makedirs(LOG_DIR, exist_ok=True)
 LOG_FILE = os.path.join(LOG_DIR, "agent_logs.txt")
 

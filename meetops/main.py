@@ -12,7 +12,7 @@ from meetops.agents.pipeline import process_meeting
 load_dotenv()
 init_db()
 
-app = FastAPI(title="MeetOps - Meeting Automation Agent", version="0.1.0")
+app = FastAPI(title="MeetOps - Automate Your Meeting Operations", version="0.1.0")
 
 app.add_middleware(
     CORSMiddleware,

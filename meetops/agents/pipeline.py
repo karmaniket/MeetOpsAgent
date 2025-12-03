@@ -8,6 +8,10 @@ from meetops.tools import create_event
 from meetops.tools.discord_tool import send_action_to_discord
 import time
 import google.generativeai as genai
+import re
+def extract_json(text: str):
+    match = re.search(r'\[[\s\S]*\]', text)
+    return match.group(0) if match else None
 
 dotenv_path = os.path.join(os.path.dirname(__file__), "..", ".env")
 load_dotenv(dotenv_path)
@@ -27,7 +31,7 @@ def ask_llm(system_prompt: str, user_prompt: str) -> str:
         return response.text
     except Exception as e:
         log_event("GeminiError", prompt, str(e))
-        return None
+        return f"Error from Gemini API: {e}"
 
 def get_project_context(db) -> str:
     recent_meetings: List[Meeting] = (
@@ -59,8 +63,6 @@ def ingestion_agent(raw_text: str, context: str) -> str:
         f"--- RAW TRANSCRIPT ---\n{raw_text}"
     )
     cleaned = ask_llm(system_prompt, user_prompt)
-    if cleaned is None:
-        return "FAILED: LLM could not process this transcript. Possibly too large or invalid."
     log_event("IngestionAgent", raw_text, cleaned)
     return cleaned
 
@@ -98,14 +100,6 @@ def action_agent(cleaned_text: str) -> str:
     )
 
     actions_json = ask_llm(system_prompt, user_prompt)
-    if actions_json is None:
-        return "[]"
-    if not actions_json.strip():
-        return "[]"
-    try:
-        json.loads(actions_json)
-    except:
-        actions_json = "[]"
     log_event("ActionAgent", cleaned_text, actions_json)
     return actions_json
 
@@ -124,12 +118,15 @@ def task_assignment_agent(actions: list, use_discord: bool = False) -> list:
 
 def execution_agent(actions_json: str) -> Any:
     start_time = time.time()
+
+    clean_json = extract_json(actions_json)
+    if not clean_json:
+        log_event("ExecutionAgent", actions_json, "JSON extractor failed.")
+        return {"error": "Failed to parse actions JSON: No valid JSON array found."}
     try:
-        actions = json.loads(actions_json)
-        if not isinstance(actions, list):
-            raise ValueError("actions_json is not a list")
+        actions = json.loads(clean_json)
     except Exception as e:
-        log_event("ExecutionAgent", actions_json, f"JSON parse error: {e}")
+        log_event("ExecutionAgent", clean_json, f"JSON parse error: {e}")
         return {"error": f"Failed to parse actions JSON: {e}"}
 
     results = []
@@ -163,13 +160,6 @@ def process_meeting(raw_text: str) -> Dict[str, Any]:
     try:
         context = get_project_context(db)
         cleaned = ingestion_agent(raw_text, context)
-        if cleaned.startswith("FAILED"):
-            return {
-            "error": cleaned,
-            "cleaned_transcript": "",
-            "actions_json": "[]",
-            "execution_results": {}
-            }
         actions_json = action_agent(cleaned)
         execution_results = execution_agent(actions_json)
 

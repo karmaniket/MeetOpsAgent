@@ -21,7 +21,7 @@ def process_meeting_api(request: MeetingRequest):
     result = process_meeting(request.raw_text)
     return result
 
-st.title("MeetOps – Meeting Automation Agent")
+st.title("MeetOps – Automate Your Meeting Operations")
 st.write("Easily automate your meeting workflow: upload a transcript (.txt) and let MeetOps clean the text, extract actionable tasks, assign owners and due dates, and create calendar events, all in one step!")
 
 uploaded_file = st.file_uploader("Upload transcript", type=["txt"])

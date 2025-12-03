@@ -3,7 +3,7 @@ import datetime
 from sqlalchemy import create_engine, Column, Integer, Text, DateTime, String
 from sqlalchemy.orm import declarative_base, sessionmaker
 
-DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./meetops.db")
+DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./meetops/db/meetops.db")
 
 connect_args = {}
 if DATABASE_URL.startswith("sqlite"):

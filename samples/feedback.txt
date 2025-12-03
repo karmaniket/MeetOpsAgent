@@ -1,9 +1,9 @@
 [00:00] Emily: The client raised concerns about the dashboard load times.
-[00:03] Nikhil: Yeah, they said the first render takes over 6 seconds on mobile.
+[00:03] Chris: Yeah, they said the first render takes over 6 seconds on mobile.
 [00:06] Emily: We should profile the frontend bundle size.
-[00:09] Nikhil: I’ll run Lighthouse tests today and share results.
-[00:12] Priya: I’ll handle the content feedback—they want to rename "Revenue Summary" to "Performance Overview".
+[00:09] Chris: I’ll run Lighthouse tests today and share results.
+[00:12] Rose: I’ll handle the content feedback—they want to rename "Revenue Summary" to "Performance Overview".
 [00:15] Emily: Okay, update the design file and push a new version by tomorrow 3 PM.
-[00:19] Nikhil: Also, their team asked for a PDF export option. 
-[00:22] Priya: Let’s scope that for next sprint, not now.
+[00:19] Chris: Also, their team asked for a PDF export option. 
+[00:22] Rose: Let’s scope that for next sprint, not now.
 [00:25] Emily: Agreed. I’ll communicate that in the follow-up email today.

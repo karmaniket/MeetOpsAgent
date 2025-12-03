@@ -1,8 +1,8 @@
 [00:00] Sarah: Morning everyone. We need to finalize the campaign assets by Thursday. 
 [00:05] Alex: I’ll handle the ad visuals and upload them to Drive by Wednesday evening. 
-[00:09] Priya: I’ll update the copy deck once Alex’s visuals are ready. 
+[00:09] Rose: I’ll update the copy deck once Alex’s visuals are ready. 
 [00:13] Mark: Remember, the client review call is Friday 3 PM. We should send them the final pitch deck at least two hours before. 
 [00:20] Sarah: Right. I’ll send the final deck to the client by 1 PM Friday. 
 [00:25] Alex: Also, can someone remind me to check the analytics setup on Monday morning?
-[00:30] Priya: I’ll set a reminder and verify that the tracking pixels are firing correctly.
+[00:30] Rose: I’ll set a reminder and verify that the tracking pixels are firing correctly.
 [00:34] Sarah: Great, let’s sync again next Tuesday at 10 AM to review performance.
